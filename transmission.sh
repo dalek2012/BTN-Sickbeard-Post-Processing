@@ -48,8 +48,14 @@ echo "Working on $TR_DOWNLOADED_PATH" >> "$LOGFILE"
 
 # What to do if tracker matches TVTR
 if [ "$(transmission-remote $TR_HOST -n $TR_USERNAME:$TR_PASSWORD -t $TR_TORRENT_ID -it|grep $TVTR)" ]; then
-echo "Copying file to SB process directory" >> "$LOGFILE"
-if [ "$DEBUG" == "true" ]; then echo "cp -vR $TR_DOWNLOADED_PATH $SBWATCH" >> "$LOGFILE" fi
-if [ "$USEHARDLINKS" == "true" ]; then cp -val "$TR_DOWNLOADED_PATH" "$SBWATCH" >> "$LOGFILE" >> "$LOGFILE" fi
-if [ "$USEHARDLINKS" == "false" ]; then cp -vR "$TR_DOWNLOADED_PATH" "$SBWATCH" >> "$LOGFILE" >> "$LOGFILE" fi
+    echo "Copying file to SB process directory" >> "$LOGFILE"
+    if [ "$DEBUG" == "true" ]; then 
+        echo "cp -vR $TR_DOWNLOADED_PATH $SBWATCH" >> "$LOGFILE" 
+    fi
+    if [ "$USEHARDLINKS" == "true" ]; then 
+        cp -val "$TR_DOWNLOADED_PATH" "$SBWATCH" >> "$LOGFILE" 
+    fi
+    if [ "$USEHARDLINKS" == "false" ]; then 
+        cp -vR "$TR_DOWNLOADED_PATH" "$SBWATCH" >> "$LOGFILE" 
+    fi
 fi
